@@ -4,7 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 loaded_model = tf.keras.models.load_model('digits.h5')
-image = load_img('digit/7.png', color_mode="grayscale")
+image = load_img('digit/99.png', color_mode="grayscale")
+
 
 
 def predict_d(img):
@@ -13,10 +14,14 @@ def predict_d(img):
     plt.imshow(img, cmap=plt.cm.binary)
     plt.show()
 
-    img = np.array(img)
+    img = np.invert(np.array(img))
     img = img.reshape(1, 28, 28, 1)
+    # img = img.reshape((img.shape[0], img.shape[1], img.shape[2], 1))
     img = img/255
+    print(img)
     res = loaded_model.predict([img])[0]
     return np.argmax(res), max(res)
 
-print(predict_d(image))
+for i in range(10):
+    image = load_img(f'digit/{i}.png', color_mode="grayscale")
+    print(predict_d(image))
