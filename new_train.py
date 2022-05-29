@@ -16,20 +16,6 @@ loaded_model = tf.keras.models.load_model('digits.h5')
 loaded_model.fit(x_train, y_train, epochs=1, validation_data=(x_test, y_test))
 loaded_model.save('digits.h5')
 
-# def test_predict(img):
-#     img = img.reshape(1, 28, 28, 1)
-#     res = loaded_model.predict([img])[0]
-#     return np.argmax(res), max(res)
-#
-# for i in range(15):
-#     image_test = x_test[i]
-#     plt.figure()
-#     plt.imshow(image_test, cmap='gray')
-#     plt.show()
-#     print(test_predict(image_test))
-
-# v -- функция для тестирования модели на тестовом наборе (раскомментировать)
-# print(loaded_model.evaluate(x_test, y_test))
 
 
 

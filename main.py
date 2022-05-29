@@ -1,14 +1,10 @@
 import matplotlib.pyplot as plt
-from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.datasets.mnist import load_data
 import tensorflow as tf
 import numpy as np
 
-
 (x_train, y_train), (x_test, y_test) = load_data()
 print(type(x_train))
-
-# x_train = tf.keras.utils.normalize(x_train, axis=1)
 
 x_train = x_train.reshape((x_train.shape[0], 28, 28, 1))
 x_test = x_test.reshape((x_test.shape[0], 28, 28, 1))
@@ -46,21 +42,3 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 model.fit(x_train, y_train, epochs=3, validation_data=(x_test, y_test))
 model.save('digits.h5')
 
-# def predict_d(img):
-#     img = img.resize((28, 28))
-#     plt.figure()
-#     plt.imshow(img, cmap=plt.cm.binary)
-#     plt.show()
-#
-#     img = np.array(img)
-#     img = img.reshape(1, 28, 28, 1)
-#     # img = img.reshape((img.shape[0], img.shape[1], img.shape[2], 1))
-#     img = img/255
-#     res = model.predict([img])[0]
-#     return np.argmax(res), max(res)
-#
-#
-#
-# for i in range(10):
-#     image = load_img(f'digit/{i}.png', color_mode="grayscale")
-#     print(predict_d(image))
